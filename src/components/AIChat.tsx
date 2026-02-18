@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { Send, X, Bot, User } from "lucide-react";
 import { useStore } from "../store";
 import { invoke } from "@tauri-apps/api/core";
+import { generateId } from "../utils/id";
+import { notify } from "../utils/notifications";
 
 interface Message {
   id: string;
@@ -35,10 +37,13 @@ export default function AIChat({ onClose }: { onClose: () => void }) {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
+    // Save message text before clearing input
+    const messageText = input.trim();
+
     const userMessage: Message = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       role: "user",
-      content: input,
+      content: messageText,
       timestamp: new Date(),
     };
 
@@ -48,16 +53,19 @@ export default function AIChat({ onClose }: { onClose: () => void }) {
 
     try {
       // Call Tauri backend to interact with AI
+      // Note: Rust expects snake_case, so we convert camelCase to snake_case
       const response = await invoke<string>("chat_with_ai", {
-        message: input,
-        context: currentDocument ? {
-          name: currentDocument.name,
-          requirementsCount: currentDocument.requirements.length,
-        } : null,
+        message: messageText,
+        context: currentDocument
+          ? {
+              name: currentDocument.name,
+              requirements_count: currentDocument.requirements.length, // snake_case for Rust
+            }
+          : null,
       });
 
       const assistantMessage: Message = {
-        id: crypto.randomUUID(),
+        id: generateId(),
         role: "assistant",
         content: response,
         timestamp: new Date(),
@@ -66,13 +74,16 @@ export default function AIChat({ onClose }: { onClose: () => void }) {
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       console.error("Error calling AI:", error);
-      const errorMessage: Message = {
-        id: crypto.randomUUID(),
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      notify.error(`AI request failed: ${errorMessage}`);
+      
+      const errorResponse: Message = {
+        id: generateId(),
         role: "assistant",
-        content: "Sorry, I encountered an error. Please make sure your AI API key is configured.",
+        content: "Sorry, I encountered an error. Please make sure your AI API key is configured in the environment variables (OPENAI_API_KEY or ANTHROPIC_API_KEY).",
         timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages((prev) => [...prev, errorResponse]);
     } finally {
       setIsLoading(false);
     }

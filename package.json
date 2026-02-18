@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "tauri:build": "bash -c 'ulimit -n 65536 2>/dev/null || true; exec tauri build'",
+    "tauri:build:safe": "bash -c 'ulimit -n 65536 2>/dev/null || true; exec tauri build'"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",

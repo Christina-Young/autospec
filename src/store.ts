@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { generateId } from "./utils/id";
+import { saveDocuments, loadDocuments } from "./utils/persistence";
 
 export interface Requirement {
   id: string;
@@ -44,15 +46,18 @@ interface AppState {
   exportToMarkdown: (id: string) => string;
 }
 
+// Load documents from persistence on initialization
+const initialDocuments = typeof window !== "undefined" ? loadDocuments() : [];
+
 export const useStore = create<AppState>((set, get) => ({
-  documents: [],
-  currentDocumentId: null,
-  currentDocument: null,
+  documents: initialDocuments,
+  currentDocumentId: initialDocuments.length > 0 ? initialDocuments[0].id : null,
+  currentDocument: initialDocuments.length > 0 ? initialDocuments[0] : null,
   templates: [],
 
   loadTemplates: async () => {
-    const { loadTemplates } = await import("./utils/templateLoader");
-    const templates = await loadTemplates();
+    const { loadTemplates: loadTemplatesFromFile } = await import("./utils/templateLoader");
+    const templates = await loadTemplatesFromFile();
     set({ templates });
   },
 
@@ -67,7 +72,7 @@ export const useStore = create<AppState>((set, get) => ({
       : null;
 
     const newDoc: Document = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       name,
       content: template?.content || "",
       requirements: template?.requirements || [],
@@ -76,25 +81,41 @@ export const useStore = create<AppState>((set, get) => ({
       version: 1,
     };
 
-    set((state) => ({
-      documents: [...state.documents, newDoc],
-      currentDocumentId: newDoc.id,
-      currentDocument: newDoc,
-    }));
+    set((state) => {
+      const newDocuments = [...state.documents, newDoc];
+      // Persist to localStorage
+      if (typeof window !== "undefined") {
+        saveDocuments(newDocuments);
+      }
+      return {
+        documents: newDocuments,
+        currentDocumentId: newDoc.id,
+        currentDocument: newDoc,
+      };
+    });
   },
 
   updateDocument: (id: string, updates: Partial<Document>) => {
-    set((state) => ({
-      documents: state.documents.map((doc) =>
+    set((state) => {
+      const updatedDocuments = state.documents.map((doc) =>
         doc.id === id
           ? { ...doc, ...updates, updatedAt: new Date(), version: doc.version + 1 }
           : doc
-      ),
-      currentDocument:
-        state.currentDocumentId === id
-          ? { ...state.currentDocument!, ...updates, updatedAt: new Date() }
-          : state.currentDocument,
-    }));
+      );
+      
+      // Persist to localStorage
+      if (typeof window !== "undefined") {
+        saveDocuments(updatedDocuments);
+      }
+      
+      return {
+        documents: updatedDocuments,
+        currentDocument:
+          state.currentDocumentId === id && state.currentDocument
+            ? { ...state.currentDocument, ...updates, updatedAt: new Date() }
+            : state.currentDocument,
+      };
+    });
   },
 
   addRequirement: (requirement: Omit<Requirement, "id" | "number">) => {
@@ -107,7 +128,7 @@ export const useStore = create<AppState>((set, get) => ({
 
     const newRequirement: Requirement = {
       ...requirement,
-      id: crypto.randomUUID(),
+      id: generateId(),
       number: `${requirement.category.charAt(0).toUpperCase()}-${categoryCounts + 1}`,
     };
 
