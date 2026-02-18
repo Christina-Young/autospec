@@ -51,6 +51,23 @@ npm run tauri:dev
 npm run tauri:build
 ```
 
+## Quick Start
+
+### Running the Application
+
+**Development mode** (recommended):
+```bash
+npm install
+npm run tauri:dev
+```
+
+**Production build**:
+```bash
+npm run tauri:build
+```
+
+For detailed instructions, see [QUICK_START.md](./QUICK_START.md)
+
 ## Usage
 
 ### Creating a Requirements Document
@@ -59,24 +76,37 @@ npm run tauri:build
 2. Enter a document name
 3. Optionally select a template
 4. Start writing your requirements
+5. **Documents auto-save** to localStorage as you work
 
 ### Using AI Assistant
 
-1. Click "AI Assistant" button in the header
-2. Chat with the AI to brainstorm requirements
-3. Get suggestions for improving your document
+1. Set your API key: `export OPENAI_API_KEY=your_key_here`
+2. Click "AI Assistant" button in the header
+3. Chat with the AI to brainstorm requirements
+4. Get suggestions for improving your document
+5. **See notifications** for success/error feedback
 
 ### Review Workflow
 
 1. Click "Review" button to open the review panel
 2. Change requirement status: Draft → Review → Approved → Implemented
 3. Track progress visually
+4. Filter by status to see what needs attention
 
 ### Exporting
 
 1. Click "Export MD" to save as markdown
 2. The exported file is GitHub-compatible
 3. Use in GitHub workflows, issues, or PRs
+4. **Success notification** confirms export
+
+## New Features
+
+✨ **Auto-Save**: Documents automatically save to localStorage  
+🔔 **Notifications**: Toast notifications for all actions  
+💾 **Persistence**: Data persists across app restarts  
+🛡️ **Error Handling**: User-friendly error messages  
+🌐 **Browser Compatible**: Works in all modern browsers
 
 ## MCP Server Integration
 
