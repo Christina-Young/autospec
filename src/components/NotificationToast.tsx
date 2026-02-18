@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { X, CheckCircle, XCircle, Info, AlertTriangle } from "lucide-react";
 import { onNotification, Notification, NotificationType } from "../utils/notifications";
-import { generateId } from "../utils/id";
 
 export default function NotificationToast() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
