@@ -1,0 +1,65 @@
+{
+  "id": "api-template",
+  "name": "REST API Template",
+  "content": "# REST API Requirements\n\n## Overview\n\nThis document outlines the requirements for building a RESTful API using AI agents.\n\n## API Design Principles\n\n- RESTful conventions\n- Versioning strategy\n- Authentication and authorization\n- Rate limiting\n- Comprehensive error handling\n\n## Technical Requirements\n\n- OpenAPI/Swagger documentation\n- Request/response validation\n- Logging and monitoring\n- Security best practices\n",
+  "requirements": [
+    {
+      "id": "req-1",
+      "number": "F-1",
+      "text": "The API shall implement RESTful conventions (GET, POST, PUT, DELETE, PATCH)",
+      "category": "functional",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-2",
+      "number": "F-2",
+      "text": "The API shall provide OpenAPI/Swagger documentation",
+      "category": "functional",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-3",
+      "number": "F-3",
+      "text": "The API shall implement authentication using JWT tokens",
+      "category": "functional",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-4",
+      "number": "NF-1",
+      "text": "The API shall handle at least 1000 requests per second",
+      "category": "non-functional",
+      "priority": "medium",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-5",
+      "number": "NF-2",
+      "text": "The API shall have 99.9% uptime",
+      "category": "non-functional",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-6",
+      "number": "C-1",
+      "text": "The API shall implement rate limiting (100 requests per minute per user)",
+      "category": "constraint",
+      "priority": "medium",
+      "status": "draft",
+      "dependencies": []
+    }
+  ],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "updatedAt": "2024-01-01T00:00:00Z",
+  "version": 1
+}
+

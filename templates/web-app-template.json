@@ -1,0 +1,47 @@
+{
+  "id": "web-app-template",
+  "name": "Web Application Template",
+  "content": "# Web Application Requirements\n\n## Overview\n\nThis document outlines the requirements for building a modern web application using AI agents.\n\n## Project Goals\n\n- Build a responsive web application\n- Implement user authentication\n- Create a modern UI/UX\n- Ensure scalability and performance\n\n## Technical Stack\n\n- Frontend: React/Next.js\n- Backend: Node.js/Express or Python/FastAPI\n- Database: PostgreSQL or MongoDB\n- Deployment: Vercel/Netlify or AWS\n",
+  "requirements": [
+    {
+      "id": "req-1",
+      "number": "F-1",
+      "text": "The application shall have user authentication with email/password and OAuth support",
+      "category": "functional",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-2",
+      "number": "F-2",
+      "text": "The application shall be responsive and work on mobile, tablet, and desktop devices",
+      "category": "functional",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-3",
+      "number": "NF-1",
+      "text": "The application shall load initial content within 2 seconds on a 3G connection",
+      "category": "non-functional",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    },
+    {
+      "id": "req-4",
+      "number": "C-1",
+      "text": "The application shall comply with GDPR and CCPA privacy regulations",
+      "category": "constraint",
+      "priority": "high",
+      "status": "draft",
+      "dependencies": []
+    }
+  ],
+  "createdAt": "2024-01-01T00:00:00Z",
+  "updatedAt": "2024-01-01T00:00:00Z",
+  "version": 1
+}
+
