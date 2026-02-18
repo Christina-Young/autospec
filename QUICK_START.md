@@ -33,10 +33,20 @@
 
 ### Development Mode (Recommended)
 
+**If you get "too many open files" error**, see [DEV_MODE_FIX.md](./DEV_MODE_FIX.md) for workarounds.
+
 Run the app in development mode with hot reload:
 
 ```bash
+# Option 1: Use the dev script (handles file limits automatically)
+./dev.sh
+
+# Option 2: Set limit manually, then run
+ulimit -n 524288
 npm run tauri:dev
+
+# Option 3: Use safe dev script
+npm run dev:safe
 ```
 
 This will:

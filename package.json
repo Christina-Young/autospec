@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
+    "dev:safe": "bash -c 'ulimit -n 524288 2>/dev/null || ulimit -n 262144 2>/dev/null || true; exec tauri dev'",
     "tauri:build": "bash -c 'ulimit -n 65536 2>/dev/null || true; exec tauri build'",
     "tauri:build:safe": "bash -c 'ulimit -n 65536 2>/dev/null || true; exec tauri build'"
   },
