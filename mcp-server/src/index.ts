@@ -11,7 +11,7 @@ import * as fs from "fs/promises";
 import * as path from "path";
 import { randomUUID } from "crypto";
 
-const SERVER_NAME = "agent-requirements-builder";
+const SERVER_NAME = "autospec";
 const SERVER_VERSION = "0.1.0";
 
 interface Requirement {
@@ -50,7 +50,7 @@ class RequirementsBuilderServer {
     // Default documents path (can be configured)
     this.documentsPath = path.join(
       process.env.HOME || process.env.USERPROFILE || ".",
-      ".agent-requirements-builder",
+      ".autospec",
       "documents"
     );
 
@@ -435,7 +435,7 @@ class RequirementsBuilderServer {
   async run() {
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
-    console.error("Agent Requirements Builder MCP server running on stdio");
+    console.error("AutoSpec MCP server running on stdio");
   }
 }
 

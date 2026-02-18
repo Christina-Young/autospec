@@ -20,7 +20,7 @@ export default function Sidebar() {
   return (
     <div className="w-64 bg-gray-900 text-white flex flex-col">
       <div className="p-4 border-b border-gray-700">
-        <h2 className="text-lg font-semibold">Requirements Builder</h2>
+        <h2 className="text-lg font-semibold">AutoSpec</h2>
       </div>
       
       <div className="flex-1 overflow-y-auto p-2">

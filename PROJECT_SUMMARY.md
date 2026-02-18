@@ -1,4 +1,4 @@
-# Project Summary: Agent Requirements Builder
+# Project Summary: AutoSpec
 
 ## ✅ What's Been Created
 
@@ -43,7 +43,7 @@
 ### Project Structure
 
 ```
-agent-requirements-builder/
+autospec/
 ├── src/                    # React frontend
 │   ├── components/         # UI components
 │   │   ├── Editor.tsx      # Markdown editor
@@ -67,18 +67,18 @@ agent-requirements-builder/
 
 1. **Create GitHub Repository:**
    - Go to https://github.com/new
-   - Name: `agent-requirements-builder`
+   - Name: `autospec`
    - Make it public
    - Don't initialize with README
 
 2. **Push to GitHub:**
    ```bash
-   cd /home/christina/.cursor/agent-requirements-builder
+   cd /home/christina/.cursor/autospec
    git config user.name "Your Name"
    git config user.email "your.email@example.com"
-   git remote add origin https://github.com/Christina-Young/agent-requirements-builder.git
+   git remote add origin https://github.com/Christina-Young/autospec.git
    git add -A
-   git commit -m "Initial commit: Agent Requirements Builder"
+   git commit -m "Initial commit: AutoSpec"
    git push -u origin main
    ```
 

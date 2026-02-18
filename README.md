@@ -1,4 +1,4 @@
-# Agent Requirements Builder
+# AutoSpec
 
 A cross-platform desktop application for writing detailed requirements documents for AI agents to build software products. Built with Tauri, React, and TypeScript.
 
@@ -25,8 +25,8 @@ A cross-platform desktop application for writing detailed requirements documents
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Christina-Young/agent-requirements-builder.git
-cd agent-requirements-builder
+git clone https://github.com/Christina-Young/autospec.git
+cd autospec
 ```
 
 2. Install dependencies:
@@ -103,7 +103,7 @@ npm install
 ## Project Structure
 
 ```
-agent-requirements-builder/
+autospec/
 ├── src/                 # React frontend
 │   ├── components/     # UI components
 │   ├── store.ts        # State management

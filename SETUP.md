@@ -23,16 +23,16 @@
 
 4. **Create GitHub Repository:**
    - Go to https://github.com/new
-   - Repository name: `agent-requirements-builder`
+   - Repository name: `autospec`
    - Description: "A cross-platform desktop application for writing detailed requirements documents for AI agents"
    - Make it public
    - Don't initialize with README (we already have one)
 
 5. **Push to GitHub:**
    ```bash
-   git remote add origin https://github.com/Christina-Young/agent-requirements-builder.git
+   git remote add origin https://github.com/Christina-Young/autospec.git
    git add -A
-   git commit -m "Initial commit: Agent Requirements Builder"
+   git commit -m "Initial commit: AutoSpec"
    git push -u origin main
    ```
 
@@ -72,9 +72,9 @@ This will create platform-specific installers in `src-tauri/target/release/bundl
    ```json
    {
      "mcpServers": {
-       "agent-requirements-builder": {
+       "autospec": {
          "command": "node",
-         "args": ["/absolute/path/to/agent-requirements-builder/mcp-server/dist/index.js"]
+         "args": ["/absolute/path/to/autospec/mcp-server/dist/index.js"]
        }
      }
    }

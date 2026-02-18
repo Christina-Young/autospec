@@ -1,7 +1,7 @@
 {
-  "name": "@agent-requirements-builder/mcp-server",
+  "name": "@autospec/mcp-server",
   "version": "0.1.0",
-  "description": "MCP server for Agent Requirements Builder integration with Cursor and other tools",
+  "description": "MCP server for AutoSpec integration with Cursor and other tools",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {

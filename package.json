@@ -1,5 +1,5 @@
 {
-  "name": "agent-requirements-builder",
+  "name": "autospec",
   "version": "0.1.0",
   "description": "A tool for writing requirements documents for AI agents to build software products",
   "type": "module",

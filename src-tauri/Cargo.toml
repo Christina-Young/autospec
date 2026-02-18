@@ -1,10 +1,10 @@
 [package]
-name = "agent-requirements-builder"
+name = "autospec"
 version = "0.1.0"
 description = "A tool for writing requirements documents for AI agents"
 authors = ["Christina-Young"]
 license = "MIT"
-repository = "https://github.com/Christina-Young/agent-requirements-builder"
+repository = "https://github.com/Christina-Young/autospec"
 edition = "2021"
 
 [build-dependencies]

@@ -1,6 +1,6 @@
-# Agent Requirements Builder MCP Server
+# AutoSpec MCP Server
 
-MCP (Model Context Protocol) server for integrating Agent Requirements Builder with Cursor and other AI development tools.
+MCP (Model Context Protocol) server for integrating AutoSpec with Cursor and other AI development tools.
 
 ## Features
 
@@ -27,9 +27,9 @@ npm run build
 ```json
 {
   "mcpServers": {
-    "agent-requirements-builder": {
+    "autospec": {
       "command": "node",
-      "args": ["/path/to/agent-requirements-builder/mcp-server/dist/index.js"]
+      "args": ["/path/to/autospec/mcp-server/dist/index.js"]
     }
   }
 }

@@ -1,7 +1,7 @@
 {
-  "productName": "Agent Requirements Builder",
+  "productName": "AutoSpec",
   "version": "0.1.0",
-  "identifier": "com.agentrequirements.builder",
+  "identifier": "com.autospec",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -11,7 +11,7 @@
   "app": {
     "windows": [
       {
-        "title": "Agent Requirements Builder",
+        "title": "AutoSpec",
         "width": 1200,
         "height": 800,
         "minWidth": 800,
