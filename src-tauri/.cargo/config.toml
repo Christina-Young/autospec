@@ -1,0 +1,8 @@
+[build]
+# Limit parallel jobs to reduce file descriptor usage during compilation
+# Set to 1 to minimize file descriptor usage
+jobs = 1
+
+[net]
+git-fetch-with-cli = true
+

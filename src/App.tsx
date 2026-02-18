@@ -3,6 +3,7 @@ import Editor from "./components/Editor";
 import Sidebar from "./components/Sidebar";
 import AIChat from "./components/AIChat";
 import ReviewPanel from "./components/ReviewPanel";
+import NotificationToast from "./components/NotificationToast";
 import { useStore } from "./store";
 
 function App() {
@@ -12,10 +13,12 @@ function App() {
 
   useEffect(() => {
     loadTemplates();
-  }, [loadTemplates]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run once on mount
 
   return (
     <div className="flex h-screen bg-gray-50">
+      <NotificationToast />
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">

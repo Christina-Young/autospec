@@ -5,6 +5,7 @@ import { useStore } from "../store";
 import { FileText, Save, Download } from "lucide-react";
 import { save, open } from "@tauri-apps/plugin-dialog";
 import { writeTextFile } from "@tauri-apps/plugin-fs";
+import { notify } from "../utils/notifications";
 
 export default function Editor() {
   const { currentDocument, updateDocument, exportToMarkdown } = useStore();
@@ -34,9 +35,12 @@ export default function Editor() {
       if (filePath) {
         const markdown = exportToMarkdown(currentDocument.id);
         await writeTextFile(filePath, markdown);
+        notify.success("Document saved successfully!");
       }
     } catch (error) {
       console.error("Error saving file:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to save file";
+      notify.error(`Error saving file: ${errorMessage}`);
     }
   };
 
@@ -54,9 +58,12 @@ export default function Editor() {
       if (filePath) {
         const markdown = exportToMarkdown(currentDocument.id);
         await writeTextFile(filePath, markdown);
+        notify.success("Document exported successfully!");
       }
     } catch (error) {
       console.error("Error exporting file:", error);
+      const errorMessage = error instanceof Error ? error.message : "Failed to export file";
+      notify.error(`Error exporting file: ${errorMessage}`);
     }
   };
 
