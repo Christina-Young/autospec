@@ -66,7 +66,11 @@ npm run tauri:dev
 npm run tauri:build
 ```
 
-For detailed instructions, see [QUICK_START.md](./QUICK_START.md)
+### Troubleshooting
+
+- **"Too many open files"** (Linux): Increase the limit with `ulimit -n 65536` before building, or close other heavy applications. You can also build the frontend first (`npm run build`), then build the Rust backend in `src-tauri` with `cargo build --release`, then run `npx tauri build`.
+- **Rust or system deps**: See [Tauri prerequisites](https://tauri.app/v1/guides/getting-started/prerequisites) for your platform (e.g. on Ubuntu: `libwebkit2gtk-4.0-dev`, `libssl-dev`, `libayatana-appindicator3-dev`, `librsvg2-dev`).
+- **AI chat**: Set `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` in your environment.
 
 ## Usage
 
