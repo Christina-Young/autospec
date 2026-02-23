@@ -118,7 +118,7 @@ export default function Editor() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onBlur={() => updateDocument(currentDocument.id, { content })}
-            className="w-full h-full p-6 font-mono text-sm border-0 focus:outline-none resize-none"
+            className="w-full h-full p-6 font-mono text-sm text-gray-900 bg-white border-0 focus:outline-none resize-none placeholder-gray-500"
             placeholder="Start writing your requirements document..."
           />
         )}
