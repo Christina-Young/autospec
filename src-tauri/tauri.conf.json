@@ -26,17 +26,9 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all"
+    "targets": ["deb", "rpm"],
+    "icon": ["icons/icon.png"]
   },
-  "plugins": {
-    "dialog": {
-      "all": true,
-      "open": true,
-      "save": true
-    },
-    "fs": {
-      "scope": ["**"]
-    }
-  }
+  "plugins": {}
 }
 

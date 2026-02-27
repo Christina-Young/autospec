@@ -3,7 +3,14 @@ import { useStore } from "../store";
 import { FilePlus, X } from "lucide-react";
 
 export default function Sidebar() {
-  const { documents, templates, currentDocumentId, setCurrentDocument, createDocument } = useStore();
+  const {
+    documents,
+    templates,
+    currentDocumentId,
+    setCurrentDocument,
+    createDocument,
+    defaultTemplateId,
+  } = useStore();
   const [showNewDocDialog, setShowNewDocDialog] = useState(false);
   const [newDocName, setNewDocName] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState<string>("");
@@ -25,7 +32,10 @@ export default function Sidebar() {
       
       <div className="flex-1 overflow-y-auto p-2">
         <button
-          onClick={() => setShowNewDocDialog(true)}
+          onClick={() => {
+            setSelectedTemplate(defaultTemplateId || "");
+            setShowNewDocDialog(true);
+          }}
           className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg mb-4 flex items-center gap-2"
         >
           <FilePlus className="w-4 h-4" />

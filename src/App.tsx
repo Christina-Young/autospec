@@ -4,11 +4,14 @@ import Sidebar from "./components/Sidebar";
 import AIChat from "./components/AIChat";
 import ReviewPanel from "./components/ReviewPanel";
 import NotificationToast from "./components/NotificationToast";
+import SettingsModal from "./components/SettingsModal";
+import { Settings } from "lucide-react";
 import { useStore } from "./store";
 
 function App() {
   const [showAIChat, setShowAIChat] = useState(false);
   const [showReview, setShowReview] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const { currentDocument, loadTemplates } = useStore();
 
   useEffect(() => {
@@ -26,6 +29,14 @@ function App() {
             {currentDocument?.name || "New Requirements Document"}
           </h1>
           <div className="flex gap-2">
+            <button
+              onClick={() => setShowSettings(true)}
+              className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700 flex items-center gap-2"
+              aria-label="Open settings"
+            >
+              <Settings className="w-4 h-4" />
+              <span className="text-sm">Settings</span>
+            </button>
             <button
               onClick={() => setShowReview(!showReview)}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -53,6 +64,10 @@ function App() {
             </div>
           )}
         </div>
+
+        {showSettings && (
+          <SettingsModal onClose={() => setShowSettings(false)} />
+        )}
       </div>
     </div>
   );

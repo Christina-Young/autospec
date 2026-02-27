@@ -52,12 +52,17 @@ export function loadDocuments(): Document[] {
       return [];
     }
 
-    // Convert date strings back to Date objects
-    return data.documents.map((doc) => ({
-      ...doc,
-      createdAt: new Date(doc.createdAt),
-      updatedAt: new Date(doc.updatedAt),
-    }));
+    // Convert date strings back to Date objects and ensure discipline fields exist (for docs saved before Intent/Context were added)
+    return data.documents.map((doc) => {
+      const d = doc as Document & { intent?: string; context?: string };
+      return {
+        ...d,
+        intent: d.intent ?? "",
+        context: d.context ?? "",
+        createdAt: new Date(d.createdAt),
+        updatedAt: new Date(d.updatedAt),
+      } as Document;
+    });
   } catch (error) {
     console.error("Failed to load documents:", error);
     return [];

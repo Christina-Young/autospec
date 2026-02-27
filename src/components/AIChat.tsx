@@ -24,7 +24,7 @@ export default function AIChat({ onClose }: { onClose: () => void }) {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { currentDocument } = useStore();
+  const { currentDocument, aiProvider } = useStore();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -59,9 +59,12 @@ export default function AIChat({ onClose }: { onClose: () => void }) {
         context: currentDocument
           ? {
               name: currentDocument.name,
-              requirements_count: currentDocument.requirements.length, // snake_case for Rust
+              requirements_count: currentDocument.requirements.length,
+              intent: currentDocument.intent?.trim() || null,
+              context: currentDocument.context?.trim() || null,
             }
           : null,
+        provider: aiProvider,
       });
 
       const assistantMessage: Message = {
@@ -80,7 +83,8 @@ export default function AIChat({ onClose }: { onClose: () => void }) {
       const errorResponse: Message = {
         id: generateId(),
         role: "assistant",
-        content: "Sorry, I encountered an error. Please make sure your AI API key is configured in the environment variables (OPENAI_API_KEY or ANTHROPIC_API_KEY).",
+        content:
+          "Sorry, I encountered an error. Please make sure the appropriate API key is configured for the selected provider:\n\n- OPENAI_API_KEY for OpenAI\n- ANTHROPIC_API_KEY for Anthropic\n- GEMINI_API_KEY for Google Gemini\n- GROK_API_KEY for Grok\n- Ollama must be running locally for the Ollama provider.",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorResponse]);
@@ -89,10 +93,24 @@ export default function AIChat({ onClose }: { onClose: () => void }) {
     }
   };
 
+  const providerLabel =
+    aiProvider === "openai"
+      ? "OpenAI"
+      : aiProvider === "anthropic"
+      ? "Anthropic Claude"
+      : aiProvider === "gemini"
+      ? "Google Gemini"
+      : aiProvider === "grok"
+      ? "Grok (x.ai)"
+      : "Ollama (local)";
+
   return (
     <div className="h-full flex flex-col bg-white">
       <div className="border-b border-gray-200 px-4 py-3 flex items-center justify-between">
-        <h3 className="font-semibold text-gray-800">AI Assistant</h3>
+        <div>
+          <h3 className="font-semibold text-gray-800">AI Assistant</h3>
+          <p className="text-xs text-gray-500 mt-0.5">Provider: {providerLabel}</p>
+        </div>
         <button
           onClick={onClose}
           className="text-gray-400 hover:text-gray-600"
