@@ -9,6 +9,8 @@ export async function loadTemplates(): Promise<Document[]> {
     {
       id: "web-app-template",
       name: "Web Application Template",
+      intent: "",
+      context: "",
       content: `# Web Application Requirements
 
 ## Overview
@@ -74,6 +76,8 @@ This document outlines the requirements for building a modern web application us
     {
       id: "api-template",
       name: "REST API Template",
+      intent: "",
+      context: "",
       content: `# REST API Requirements
 
 ## Overview

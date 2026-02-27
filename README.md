@@ -1,9 +1,18 @@
 # AutoSpec
 
-A cross-platform desktop application for writing detailed requirements documents for AI agents to build software products. Built with Tauri, React, and TypeScript.
+A cross-platform desktop application for writing **agent-ready specifications**—documents that autonomous AI agents or teams of agents can execute against over extended time horizons. Built with Tauri, React, and TypeScript.
+
+AutoSpec structures work around three disciplines so the final document captures what you really need agents to build:
+
+1. **Intent Engineering (Strategy)** — Purpose, why we're building, goals, trade-off hierarchy, and decision boundaries so agents optimize for the right outcomes.
+2. **Context Engineering** — What information and tokens to supply to the agent(s); curation strategy and key sources so the task is self-contained and plausibly solvable.
+3. **Specification Engineering** — Complete, structured descriptions of outputs, acceptance criteria, constraints, and how quality is measured so agents can run without human intervention.
+
+This workflow is inspired by the [“If You're Prompting Like It's Last Month, You're Already Late”](https://www.youtube.com/watch?v=BpibZSMGtdY) framework (Intent → Context → Specification) for long-running autonomous agents.
 
 ## Features
 
+- 📐 **Three-discipline workflow** — Intent, Context, and Specification sections in every document
 - 📝 **Rich Markdown Editor** - Write requirements with live preview
 - 🤖 **AI-Powered Brainstorming** - Interactive chat assistant to refine requirements
 - 📋 **Template System** - Start with pre-built templates for common project types
@@ -74,13 +83,14 @@ npm run tauri:build
 
 ## Usage
 
-### Creating a Requirements Document
+### Creating an Agent-Ready Specification
 
 1. Click "New Document" in the sidebar
-2. Enter a document name
-3. Optionally select a template
-4. Start writing your requirements
-5. **Documents auto-save** to localStorage as you work
+2. Enter a document name and optionally select a template
+3. Use the **Intent (Strategy)** tab to capture purpose, goals, and decision boundaries for the agent(s)
+4. Use the **Context** tab to define what information and sources the agent(s) should have
+5. Use the **Specification** tab for the detailed spec (and add structured requirements via the Review panel)
+6. **Documents auto-save** to localStorage as you work. Export produces a single markdown with all three sections for your agent(s)
 
 ### Using AI Assistant
 
